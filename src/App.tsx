@@ -1,24 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Nav } from "./components/Nav/Nav";
+import { navLayoutContext } from "./components/Nav/NavLayoutContext";
+import { useWindowWidth } from "./useWindowWidth";
 
 function App() {
+  const viewPort = useWindowWidth();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <navLayoutContext.Provider value={{ viewPort }}>
+        <Nav />
+      </navLayoutContext.Provider>
     </div>
   );
 }
