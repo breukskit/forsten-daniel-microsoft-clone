@@ -40,7 +40,7 @@ export const CartAndUserMobile = () => {
         <li className={classes.listItem}>
           <FontAwesomeIcon className={classes.icon} icon={faShoppingCart} />
         </li>
-        <li className={classes.listItem}>
+        <li style={{ paddingRight: "0" }} className={classes.listItem}>
           <FontAwesomeIcon className={classes.icon} icon={faUserCircle} />
         </li>
       </ul>

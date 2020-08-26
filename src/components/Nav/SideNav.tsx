@@ -53,18 +53,31 @@ const useStyles = createUseStyles({
   },
 });
 export const SideNav = () => {
-  const { viewPort } = useContext(navLayoutContext);
+  const { viewPort, navLayoutDispatch, navLayoutState } = useContext(
+    navLayoutContext
+  );
   const classes = useStyles(viewPort);
   return (
     <div className={classes.sideNav}>
-      <p className={classes.sideNavDropDown}>
-        <a href="/">Hela Microsoft</a>
+      <p
+        style={
+          navLayoutState?.dropdownIsVisible
+            ? { backgroundColor: "#F2F2F2", border: "1px solid #e6e6e6" }
+            : {}
+        }
+        onClick={() => navLayoutDispatch!({ type: "TOGGLE_DROPDOWN" })}
+        className={classes.sideNavDropDown}
+      >
+        <a href="#">Hela Microsoft</a>
         <span className={classes.expander}>
           <FontAwesomeIcon icon={faChevronDown} />
         </span>
       </p>
-
-      <FontAwesomeIcon className={classes.sideNavIcon} icon={faSearch} />
+      <FontAwesomeIcon
+        onClick={() => navLayoutDispatch!({ type: "TOGGLE_FULLSIZE_SEARCH" })}
+        className={classes.sideNavIcon}
+        icon={faSearch}
+      />
 
       <FontAwesomeIcon className={classes.sideNavIcon} icon={faShoppingCart} />
 

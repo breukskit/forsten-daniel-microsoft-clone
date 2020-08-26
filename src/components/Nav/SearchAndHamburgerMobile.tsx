@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { navLayoutContext } from "./NavLayoutContext";
 import { createUseStyles } from "react-jss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faSearch,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = createUseStyles({
   mobileNavLeftContent: {
@@ -31,14 +36,34 @@ const useStyles = createUseStyles({
 });
 
 export const SearchAndHamburgerMobile = () => {
+  const { navLayoutState, navLayoutDispatch } = useContext(navLayoutContext);
   const classes = useStyles();
+  const barsFunctionality = () => {
+    if (navLayoutState!.mobileSizeSearchIsActive) {
+      navLayoutDispatch!({ type: "TOGGLE_MOBILE_SEARCH" });
+    }
+  };
+  const handleSearchIconFunctionality = () => {
+    if (!navLayoutState?.mobileSizeSearchIsActive) {
+      navLayoutDispatch!({ type: "TOGGLE_MOBILE_SEARCH" });
+    }
+  };
   return (
     <div className={classes.mobileNavLeftContent}>
       <ul className={classes.list}>
-        <li className={classes.listItem}>
-          <FontAwesomeIcon className={classes.icon} icon={faBars} />
+        <li style={{ paddingLeft: "0" }} className={classes.listItem}>
+          <FontAwesomeIcon
+            className={classes.icon}
+            onClick={barsFunctionality}
+            icon={
+              !navLayoutState!.mobileSizeSearchIsActive ? faBars : faArrowLeft
+            }
+          />
         </li>
-        <li className={classes.listItem}>
+        <li
+          onClick={handleSearchIconFunctionality}
+          className={classes.listItem}
+        >
           <FontAwesomeIcon className={classes.icon} icon={faSearch} />
         </li>
       </ul>

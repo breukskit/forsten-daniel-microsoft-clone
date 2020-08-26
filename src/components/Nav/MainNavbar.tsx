@@ -81,26 +81,6 @@ export const MainNavbar = () => {
     </ul>
   );
 
-  const listMinusTwo = (
-    <ul className={classes.mainNavList}>
-      {menuItems.map((item) => {
-        if (item.name !== "Support" && item.name !== "Specialerbjudanden") {
-          return (
-            <li className={classes.mainNavListItem} key={uuidv4()}>
-              <a href="/">{item.name}</a>
-            </li>
-          );
-        }
-      })}
-      <li className={classes.mainNavListItemDropDown}>
-        <a href="/">Mer</a>
-        <span className={classes.expander}>
-          <FontAwesomeIcon icon={faChevronDown} />
-        </span>
-      </li>
-    </ul>
-  );
-
   const listMinusThree = (
     <ul className={classes.mainNavList}>
       {menuItems.map((item) => {
@@ -161,3 +141,25 @@ export const MainNavbar = () => {
     </div>
   );
 };
+
+///////////////////////////////////////////////////////////////////
+
+// const listMinusTwo = (
+//   <ul className={classes.mainNavList}>
+//     {menuItems.map((item) => {
+//       if (item.name !== "Support" && item.name !== "Specialerbjudanden") {
+//         return (
+//           <li className={classes.mainNavListItem} key={uuidv4()}>
+//             <a href="/">{item.name}</a>
+//           </li>
+//         );
+//       }
+//     })}
+//     <li className={classes.mainNavListItemDropDown}>
+//       <a href="/">Mer</a>
+//       <span className={classes.expander}>
+//         <FontAwesomeIcon icon={faChevronDown} />
+//       </span>
+//     </li>
+//   </ul>
+// );

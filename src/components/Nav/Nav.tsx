@@ -3,6 +3,8 @@ import { navLayoutContext } from "./NavLayoutContext";
 import { FullSizeNav } from "./FullSizeNav";
 import { MobileNav } from "./MobileNav";
 import { createUseStyles } from "react-jss";
+import { navLayoutState } from "../../App";
+import { Dropdown } from "./Dropdown";
 
 export const useStyles = createUseStyles({
   nav: {
@@ -20,12 +22,16 @@ export const useStyles = createUseStyles({
 });
 
 export const Nav = () => {
-  const { viewPort } = useContext(navLayoutContext);
+  const { viewPort, navLayoutState, navLayoutDispatch } = useContext(
+    navLayoutContext
+  );
+  const { dropdownIsVisible } = navLayoutState as navLayoutState;
   const classes = useStyles(viewPort);
   return (
     <nav className={classes.nav}>
       {viewPort !== "mobile" && <FullSizeNav />}
       {viewPort === "mobile" && <MobileNav />}
+      {dropdownIsVisible && viewPort !== "mobile" && <Dropdown />}
     </nav>
   );
 };
